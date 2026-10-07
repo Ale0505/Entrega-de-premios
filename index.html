@@ -18,12 +18,13 @@ viewport-fit=cover">
 
 :root{
   --bg:#050606;
-  --panel:#0d0f0f;
   --gold:#c5a35b;
   --goldLight:#ead18a;
-  --goldDark:#70592d;
   --text:#eee9dd;
   --muted:#85857e;
+  --paper:#e7dfca;
+  --paper2:#cec5aa;
+  --ink:#25241e;
   --green:#9bad79;
 }
 
@@ -72,9 +73,9 @@ button{
   position:fixed;
   inset:0;
   pointer-events:none;
-  z-index:200;
+  z-index:500;
 
-  opacity:.14;
+  opacity:.12;
 
   background-image:
   repeating-linear-gradient(
@@ -85,15 +86,15 @@ button{
   );
 }
 
-/* ================================
-   APP
-================================ */
+/* ======================================================
+   PÁGINA PRINCIPAL
+====================================================== */
 
 .app{
   min-height:100svh;
 
   padding:
-  calc(26px + env(safe-area-inset-top))
+  calc(25px + env(safe-area-inset-top))
   17px
   calc(35px + env(safe-area-inset-bottom));
 }
@@ -104,29 +105,25 @@ button{
   margin:auto;
 }
 
-/* ================================
+/* ======================================================
    CABECERA
-================================ */
+====================================================== */
 
 .intro{
   text-align:center;
   padding:16px 8px 27px;
-
-  animation:fadeUp .8s ease both;
 }
 
 .capitol-small{
   color:var(--gold);
-
   font-size:9px;
   letter-spacing:4px;
-
   margin-bottom:16px;
 }
 
 .main-emblem{
-  width:95px;
-  height:95px;
+  width:94px;
+  height:94px;
 
   margin:0 auto 19px;
 
@@ -136,7 +133,9 @@ button{
 
   border-radius:50%;
 
-  border:1px solid rgba(197,163,91,.35);
+  border:
+  1px solid
+  rgba(197,163,91,.35);
 
   background:
   radial-gradient(
@@ -144,19 +143,17 @@ button{
     rgba(197,163,91,.08),
     transparent 70%
   );
-
-  box-shadow:
-  0 0 40px rgba(197,163,91,.08);
 }
 
 .main-emblem img{
-  width:77%;
-  height:77%;
+  width:78%;
+  height:78%;
   object-fit:contain;
 
   filter:
   drop-shadow(
-    0 0 10px rgba(197,163,91,.25)
+    0 0 10px
+    rgba(197,163,91,.25)
   );
 }
 
@@ -164,12 +161,10 @@ h1{
   margin:0;
 
   font-family:Georgia,serif;
+  font-size:29px;
   font-weight:400;
 
-  font-size:29px;
   line-height:1.12;
-
-  letter-spacing:.8px;
 }
 
 .subtitle{
@@ -199,8 +194,7 @@ h1{
   max-width:350px;
 
   margin:
-  18px auto
-  0;
+  18px auto 0;
 
   color:#aaa79e;
 
@@ -209,14 +203,13 @@ h1{
   line-height:1.65;
 }
 
-/* ================================
+/* ======================================================
    PROGRESO
-================================ */
+====================================================== */
 
 .progress-area{
   margin:
-  5px 0
-  26px;
+  5px 0 26px;
 }
 
 .progress-top{
@@ -233,16 +226,12 @@ h1{
 
 .progress-top strong{
   color:var(--gold);
-  font-weight:500;
 }
 
 .progress-track{
-  width:100%;
   height:2px;
-
-  overflow:hidden;
-
   background:#1c1e1d;
+  overflow:hidden;
 }
 
 .progress-bar{
@@ -257,17 +246,12 @@ h1{
   );
 
   transition:
-  width .8s cubic-bezier(.2,.8,.2,1);
+  width .8s ease;
 }
-
-/* ================================
-   TÍTULO
-================================ */
 
 .section-title{
   display:flex;
   align-items:center;
-
   gap:11px;
 
   margin-bottom:19px;
@@ -281,7 +265,6 @@ h1{
 .section-title::before,
 .section-title::after{
   content:"";
-
   height:1px;
   flex:1;
 
@@ -297,9 +280,9 @@ h1{
   transform:scaleX(-1);
 }
 
-/* ================================
-   GRID
-================================ */
+/* ======================================================
+   SOBRES
+====================================================== */
 
 .envelopes{
   display:grid;
@@ -310,28 +293,18 @@ h1{
   gap:
   18px 12px;
 
-  padding-bottom:25px;
+  padding-bottom:30px;
 }
 
 .envelope-slot{
   text-align:center;
-
-  animation:
-  fadeUp .7s ease both;
 }
-
-/* ================================
-   SOBRE
-================================ */
 
 .envelope{
   width:100%;
-
-  aspect-ratio:
-  1.43 / 1;
+  aspect-ratio:1.43/1;
 
   position:relative;
-
   overflow:hidden;
 
   cursor:pointer;
@@ -348,21 +321,18 @@ h1{
   rgba(197,163,91,.28);
 
   box-shadow:
-  0 10px 28px rgba(0,0,0,.38),
-  inset 0 0 25px rgba(197,163,91,.025);
+  0 10px 28px
+  rgba(0,0,0,.38);
 
   transition:
   transform .25s ease,
   opacity .35s ease,
-  filter .35s ease,
-  border-color .35s ease;
+  filter .35s ease;
 }
 
 .envelope:not(.locked):active{
   transform:scale(.965);
 }
-
-/* líneas del sobre */
 
 .envelope::before{
   content:"";
@@ -400,18 +370,15 @@ h1{
   transform:rotate(-34deg);
 }
 
-/* solapa */
-
 .flap{
   position:absolute;
 
   z-index:1;
 
-  top:0;
-  left:0;
-
   width:100%;
   height:62%;
+
+  top:0;
 
   clip-path:
   polygon(
@@ -422,17 +389,12 @@ h1{
 
   background:
   linear-gradient(
-    180deg,
     #26251f,
     #141512
   );
-
-  border-bottom:
-  1px solid
-  rgba(197,163,91,.18);
 }
 
-/* logo / sello */
+/* SELLO */
 
 .seal{
   position:absolute;
@@ -467,32 +429,14 @@ h1{
   #d8ba70;
 
   box-shadow:
-  0 5px 15px rgba(0,0,0,.5),
-  0 0 14px rgba(197,163,91,.12);
-}
-
-.seal::after{
-  content:"";
-
-  position:absolute;
-
-  inset:5px;
-
-  border-radius:50%;
-
-  border:
-  1px solid
-  rgba(20,20,15,.45);
+  0 5px 15px
+  rgba(0,0,0,.5);
 }
 
 .seal img{
-  width:76%;
-  height:76%;
-
+  width:77%;
+  height:77%;
   object-fit:contain;
-
-  position:relative;
-  z-index:2;
 
   filter:
   brightness(.24)
@@ -500,10 +444,8 @@ h1{
   saturate(.7);
 }
 
-/* bloqueados */
-
 .envelope.locked{
-  opacity:.26;
+  opacity:.25;
 
   filter:
   grayscale(1)
@@ -517,17 +459,13 @@ h1{
   rgba(155,173,121,.42);
 }
 
-.envelope.received .seal{
-  filter:saturate(.55);
-}
-
 .lock-icon{
   position:absolute;
 
   z-index:10;
 
-  right:8px;
   top:8px;
+  right:8px;
 
   width:25px;
   height:25px;
@@ -541,9 +479,6 @@ h1{
   background:
   rgba(0,0,0,.65);
 
-  border:
-  1px solid #3d3e39;
-
   color:#8b8b84;
 
   font-size:11px;
@@ -554,8 +489,8 @@ h1{
 
   z-index:10;
 
-  right:10px;
   top:10px;
+  right:10px;
 
   width:8px;
   height:8px;
@@ -572,10 +507,6 @@ h1{
   animation:
   pulse 1.6s infinite;
 }
-
-/* ================================
-   TEXTOS SOBRE
-================================ */
 
 .env-name{
   margin-top:9px;
@@ -603,31 +534,33 @@ h1{
   color:var(--green);
 }
 
-/* ================================
-   OVERLAY
-================================ */
+/* ======================================================
+   PANTALLA DE APERTURA
+====================================================== */
 
 .open-overlay{
   position:fixed;
 
-  z-index:50;
+  z-index:100;
 
   inset:0;
-
-  padding:
-  calc(20px + env(safe-area-inset-top))
-  17px
-  calc(20px + env(safe-area-inset-bottom));
 
   display:flex;
   align-items:center;
   justify-content:center;
 
+  overflow:hidden;
+
+  padding:
+  calc(20px + env(safe-area-inset-top))
+  18px
+  calc(20px + env(safe-area-inset-bottom));
+
   background:
   radial-gradient(
-    circle at 50% 35%,
+    circle at 50% 40%,
     #181914,
-    #050606 62%
+    #050606 65%
   );
 
   opacity:0;
@@ -643,34 +576,49 @@ h1{
   visibility:visible;
 }
 
-.open-stage{
-  position:relative;
+.close-btn{
+  position:absolute;
 
-  width:100%;
-  max-width:410px;
+  z-index:200;
 
-  height:
-  min(650px,82svh);
+  top:
+  calc(12px + env(safe-area-inset-top));
+
+  right:15px;
+
+  width:40px;
+  height:40px;
+
+  border-radius:50%;
+
+  color:#999991;
+  font-size:21px;
+
+  background:
+  rgba(0,0,0,.4);
+
+  border:
+  1px solid #363732;
 }
 
-/* ================================
+/* ======================================================
    SOBRE GRANDE
-================================ */
+====================================================== */
 
 .big-envelope{
   position:absolute;
 
-  width:310px;
-  height:210px;
+  z-index:20;
 
-  max-width:88vw;
+  width:min(310px,82vw);
+  height:min(210px,56vw);
 
   left:50%;
-  top:48%;
+  top:50%;
 
   transform:
   translate(-50%,-50%)
-  scale(.78);
+  scale(.75);
 
   opacity:0;
 
@@ -690,9 +638,10 @@ h1{
   rgba(0,0,0,.72);
 
   transition:
-  transform .65s cubic-bezier(.2,.8,.2,1),
-  opacity .4s ease,
-  top .85s cubic-bezier(.2,.8,.2,1);
+  transform .65s
+  cubic-bezier(.2,.8,.2,1),
+  opacity .45s ease,
+  top .85s ease;
 }
 
 .open-overlay.active
@@ -704,23 +653,22 @@ h1{
   scale(1);
 }
 
-/* solapa grande */
+/* SOLAPA */
 
 .big-flap{
   position:absolute;
 
-  z-index:6;
+  z-index:8;
 
   width:100%;
-  height:61%;
+  height:62%;
 
   top:0;
-  left:0;
 
   transform-origin:top;
 
   transform:
-  perspective(700px)
+  perspective(800px)
   rotateX(0deg);
 
   clip-path:
@@ -737,26 +685,25 @@ h1{
   );
 
   transition:
-  transform .85s
-  cubic-bezier(.4,0,.2,1);
+  transform .8s ease;
 }
 
 .big-envelope.opening
 .big-flap{
   transform:
-  perspective(700px)
+  perspective(800px)
   rotateX(180deg);
 }
 
-/* sello grande */
+/* SELLO GRANDE */
 
 .big-seal{
   position:absolute;
 
-  z-index:10;
+  z-index:15;
 
-  width:74px;
-  height:74px;
+  width:75px;
+  height:75px;
 
   left:50%;
   top:50%;
@@ -782,18 +729,14 @@ h1{
   1px solid
   #e0c985;
 
-  box-shadow:
-  0 8px 20px rgba(0,0,0,.55);
-
   transition:
   opacity .3s ease,
-  transform .4s ease;
+  transform .35s ease;
 }
 
 .big-seal img{
   width:76%;
   height:76%;
-
   object-fit:contain;
 
   filter:
@@ -808,119 +751,257 @@ h1{
 
   transform:
   translate(-50%,-40%)
-  scale(.5);
+  scale(.4);
 }
 
-/* ================================
-   CARTA
-================================ */
+/* SOBRE SE VA */
 
-.letter{
-  position:absolute;
-
-  z-index:3;
-
-  width:282px;
-  height:410px;
-
-  max-width:82vw;
-
-  left:50%;
-  top:50%;
-
-  transform:
-  translate(-50%,-15%)
-  scale(.88);
+.big-envelope.leave{
+  top:125%;
 
   opacity:0;
 
-  overflow:auto;
+  transition:
+  top .85s
+  cubic-bezier(.4,0,.7,1),
+  opacity .65s ease;
+}
 
-  padding:
-  25px 21px 28px;
+/* ======================================================
+   CARTA
+====================================================== */
 
-  color:#25241e;
+.letter-wrapper{
+  position:absolute;
+
+  z-index:30;
+
+  left:50%;
+  top:58%;
+
+  width:min(340px,86vw);
+  height:min(510px,67svh);
+
+  opacity:0;
+
+  transform:
+  translate(-50%,15%)
+  scale(.88);
+
+  perspective:1400px;
+
+  transition:
+  top .9s cubic-bezier(.2,.8,.2,1),
+  transform .9s cubic-bezier(.2,.8,.2,1),
+  opacity .45s ease;
+}
+
+.letter-wrapper.rising{
+  opacity:1;
+
+  top:45%;
+
+  transform:
+  translate(-50%,-50%)
+  scale(.93);
+}
+
+.letter-wrapper.centered{
+  opacity:1;
+
+  top:50%;
+
+  transform:
+  translate(-50%,-50%)
+  scale(1);
+}
+
+.letter-card{
+  position:relative;
+
+  width:100%;
+  height:100%;
+
+  transform-style:preserve-3d;
+
+  transition:
+  transform .85s
+  cubic-bezier(.2,.75,.2,1);
+
+  cursor:pointer;
+}
+
+.letter-card.flipped{
+  transform:rotateY(180deg);
+}
+
+.letter-face{
+  position:absolute;
+
+  inset:0;
+
+  overflow:hidden;
+
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
 
   background:
   linear-gradient(
     145deg,
-    #e9e2ce,
-    #d2cab3
+    var(--paper),
+    var(--paper2)
   );
 
-  box-shadow:
-  0 20px 55px rgba(0,0,0,.58);
+  color:var(--ink);
 
-  transition:
-  transform 1s cubic-bezier(.2,.8,.2,1),
-  opacity .45s ease;
-}
-
-.big-envelope.opening
-.letter{
-  opacity:1;
-}
-
-.big-envelope.letter-out{
-  top:80%;
-}
-
-.big-envelope.letter-out
-.letter{
-  transform:
-  translate(-50%,-118%)
-  scale(1);
-}
-
-/* cabecera carta */
-
-.letter-head{
-  text-align:center;
-
-  padding-bottom:14px;
-  margin-bottom:16px;
-
-  border-bottom:
+  border:
   1px solid
-  rgba(50,45,30,.22);
+  rgba(110,90,50,.35);
+
+  box-shadow:
+  0 22px 60px
+  rgba(0,0,0,.62);
 }
 
-.letter-emblem{
-  width:62px;
-  height:62px;
+/* ======================================================
+   ANVERSO
+====================================================== */
 
-  margin:
-  0 auto 9px;
-
+.letter-front{
   display:flex;
+  flex-direction:column;
+
   align-items:center;
   justify-content:center;
+
+  text-align:center;
+
+  padding:32px 24px;
 }
 
-.letter-emblem img{
+.front-logo{
+  width:105px;
+  height:105px;
+
+  margin-bottom:23px;
+}
+
+.front-logo img{
   width:100%;
   height:100%;
-
   object-fit:contain;
 
   filter:
-  brightness(.38)
-  sepia(.6)
+  brightness(.34)
+  sepia(.55)
   saturate(.7);
 }
 
-.letter h2{
+.front-rule{
+  width:65%;
+  height:1px;
+
+  margin:
+  20px 0;
+
+  background:
+  rgba(80,70,45,.35);
+}
+
+.front-name{
+  font-family:Georgia,serif;
+
+  font-size:28px;
+
+  letter-spacing:1.5px;
+}
+
+.front-industry{
+  margin-top:9px;
+
+  color:#756d5b;
+
+  font-size:9px;
+  letter-spacing:2.6px;
+}
+
+.front-type{
+  font-size:10px;
+  letter-spacing:3px;
+
+  color:#504b40;
+}
+
+.tap-hint{
+  position:absolute;
+
+  bottom:27px;
+
+  color:#756d5b;
+
+  font-size:9px;
+  letter-spacing:2px;
+
+  animation:
+  hintPulse 1.8s infinite;
+}
+
+/* ======================================================
+   REVERSO
+====================================================== */
+
+.letter-back{
+  transform:rotateY(180deg);
+
+  padding:
+  23px 21px 30px;
+
+  overflow-y:auto;
+
+  -webkit-overflow-scrolling:touch;
+}
+
+.back-head{
+  text-align:center;
+
+  padding-bottom:13px;
+
+  margin-bottom:15px;
+
+  border-bottom:
+  1px solid
+  rgba(60,55,40,.22);
+}
+
+.back-logo{
+  width:54px;
+  height:54px;
+
+  margin:
+  0 auto 8px;
+}
+
+.back-logo img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+
+  filter:
+  brightness(.35)
+  sepia(.55)
+  saturate(.7);
+}
+
+.back-head h2{
   margin:0;
 
   font-family:Georgia,serif;
   font-weight:400;
 
   font-size:20px;
-
-  letter-spacing:1px;
 }
 
-.industry{
+.back-industry{
   margin-top:6px;
 
   color:#766e5c;
@@ -928,8 +1009,6 @@ h1{
   font-size:8px;
   letter-spacing:2px;
 }
-
-/* cuerpo */
 
 .letter-body{
   text-align:center;
@@ -947,10 +1026,10 @@ h1{
 
 .gift-reveal{
   margin:
-  18px 0;
+  17px 0;
 
   padding:
-  15px 7px;
+  14px 6px;
 
   border-top:
   1px solid
@@ -968,19 +1047,17 @@ h1{
   font-size:12px;
   line-height:1.55;
 
-  letter-spacing:.6px;
-
+  letter-spacing:.5px;
   font-weight:600;
 }
 
 .gift-reveal strong{
   font-family:Georgia,serif;
-
   font-size:16px;
 }
 
 .sponsors{
-  margin-top:17px;
+  margin-top:16px;
 
   color:#68604f;
 
@@ -988,111 +1065,71 @@ h1{
   font-style:italic;
 }
 
-/* ================================
-   BOTÓN
-================================ */
+/* ======================================================
+   BOTÓN ACEPTAR
+====================================================== */
 
 .accept-area{
   position:absolute;
 
-  z-index:20;
+  z-index:60;
 
-  bottom:0;
+  left:50%;
 
-  left:0;
+  bottom:
+  calc(17px + env(safe-area-inset-bottom));
 
-  width:100%;
-
-  text-align:center;
-
-  opacity:0;
-  pointer-events:none;
+  width:min(340px,86vw);
 
   transform:
-  translateY(12px);
+  translate(-50%,15px);
+
+  opacity:0;
+
+  pointer-events:none;
 
   transition:
-  opacity .45s ease,
-  transform .45s ease;
+  opacity .4s ease,
+  transform .4s ease;
 }
 
 .accept-area.show{
   opacity:1;
+
   pointer-events:auto;
 
-  transform:none;
+  transform:
+  translate(-50%,0);
 }
 
 .accept-btn{
   width:100%;
-  max-width:310px;
-
   min-height:52px;
 
   color:var(--goldLight);
 
   background:
   linear-gradient(
-    180deg,
-    rgba(197,163,91,.17),
-    rgba(197,163,91,.05)
+    rgba(197,163,91,.18),
+    rgba(197,163,91,.06)
   );
 
   border:
   1px solid
   var(--gold);
 
-  letter-spacing:2px;
-
   font-size:10px;
-
-  cursor:pointer;
+  letter-spacing:2px;
 }
 
-.accept-btn:active{
-  transform:scale(.98);
-}
-
-.close-btn{
-  position:absolute;
-
-  z-index:100;
-
-  top:
-  calc(11px + env(safe-area-inset-top));
-
-  right:14px;
-
-  width:39px;
-  height:39px;
-
-  border-radius:50%;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  color:#999991;
-
-  background:
-  rgba(0,0,0,.35);
-
-  border:
-  1px solid #363732;
-
-  font-size:21px;
-
-  cursor:pointer;
-}
-
-/* ================================
+/* ======================================================
    DESBLOQUEO
-================================ */
+====================================================== */
 
 .unlock-message{
   position:fixed;
 
-  z-index:80;
+  z-index:300;
 
   inset:0;
 
@@ -1103,7 +1140,7 @@ h1{
   padding:30px;
 
   background:
-  rgba(3,4,4,.96);
+  rgba(3,4,4,.97);
 
   opacity:0;
   visibility:hidden;
@@ -1117,51 +1154,27 @@ h1{
 }
 
 .unlock-box{
-  width:100%;
-  max-width:330px;
-
   text-align:center;
+  max-width:330px;
 }
 
 .unlock-emblem{
-  width:100px;
-  height:100px;
+  width:105px;
+  height:105px;
 
   margin:
-  0 auto 21px;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  border-radius:50%;
-
-  border:
-  1px solid
-  rgba(197,163,91,.38);
-
-  background:
-  radial-gradient(
-    circle,
-    rgba(197,163,91,.1),
-    transparent 68%
-  );
-
-  box-shadow:
-  0 0 50px
-  rgba(197,163,91,.08);
+  0 auto 22px;
 }
 
 .unlock-emblem img{
-  width:76%;
-  height:76%;
-
+  width:100%;
+  height:100%;
   object-fit:contain;
 
   filter:
   drop-shadow(
-    0 0 12px
-    rgba(197,163,91,.25)
+    0 0 15px
+    rgba(197,163,91,.3)
   );
 }
 
@@ -1173,13 +1186,13 @@ h1{
 }
 
 .unlock-box h2{
-  margin:
-  12px 0;
-
   font-family:Georgia,serif;
   font-weight:400;
 
-  font-size:25px;
+  font-size:26px;
+
+  margin:
+  12px 0;
 }
 
 .unlock-box p{
@@ -1191,14 +1204,14 @@ h1{
   line-height:1.6;
 }
 
-/* ================================
+/* ======================================================
    FINAL
-================================ */
+====================================================== */
 
 .final-screen{
   position:fixed;
 
-  z-index:90;
+  z-index:350;
 
   inset:0;
 
@@ -1206,16 +1219,13 @@ h1{
   align-items:center;
   justify-content:center;
 
-  padding:
-  calc(30px + env(safe-area-inset-top))
-  30px
-  calc(30px + env(safe-area-inset-bottom));
+  padding:30px;
 
   background:
   radial-gradient(
-    circle at center,
+    circle,
     #1b1b16,
-    #050606 64%
+    #050606 65%
   );
 
   opacity:0;
@@ -1230,15 +1240,13 @@ h1{
 }
 
 .final-content{
-  width:100%;
   max-width:360px;
-
   text-align:center;
 }
 
 .final-logo{
-  width:110px;
-  height:110px;
+  width:115px;
+  height:115px;
 
   margin:
   0 auto 20px;
@@ -1247,25 +1255,14 @@ h1{
 .final-logo img{
   width:100%;
   height:100%;
-
   object-fit:contain;
-
-  filter:
-  drop-shadow(
-    0 0 18px
-    rgba(197,163,91,.25)
-  );
 }
 
 .final-content h2{
-  margin:
-  12px 0 18px;
-
   font-family:Georgia,serif;
   font-weight:400;
 
   font-size:27px;
-  line-height:1.3;
 }
 
 .final-content p{
@@ -1287,17 +1284,17 @@ h1{
   line-height:1.65;
 }
 
-/* ================================
+/* ======================================================
    ADMIN
-================================ */
+====================================================== */
 
 .admin-trigger{
   position:fixed;
 
-  z-index:250;
+  z-index:600;
 
-  left:0;
   top:0;
+  left:0;
 
   width:65px;
   height:65px;
@@ -1306,7 +1303,7 @@ h1{
 .admin{
   position:fixed;
 
-  z-index:240;
+  z-index:550;
 
   inset:0;
 
@@ -1328,9 +1325,7 @@ h1{
 }
 
 .admin-inner{
-  width:100%;
   max-width:420px;
-
   margin:auto;
 }
 
@@ -1343,14 +1338,11 @@ h1{
 
 .admin p{
   color:#888;
-
   font-size:13px;
-  line-height:1.5;
 }
 
 .admin-grid{
   display:grid;
-
   gap:10px;
 
   margin-top:20px;
@@ -1358,8 +1350,6 @@ h1{
 
 .admin button{
   min-height:49px;
-
-  padding:12px;
 
   color:#d5d0c4;
 
@@ -1371,27 +1361,12 @@ h1{
 
 .admin .danger{
   color:#bd7169;
-
   border-color:#633d39;
 }
 
-/* ================================
+/* ======================================================
    ANIMACIONES
-================================ */
-
-@keyframes fadeUp{
-
-  from{
-    opacity:0;
-    transform:translateY(12px);
-  }
-
-  to{
-    opacity:1;
-    transform:none;
-  }
-
-}
+====================================================== */
 
 @keyframes pulse{
 
@@ -1407,19 +1382,14 @@ h1{
 
 }
 
-@media(max-width:370px){
+@keyframes hintPulse{
 
-  .envelopes{
-    gap:
-    16px 9px;
+  0%,100%{
+    opacity:.4;
   }
 
-  h1{
-    font-size:26px;
-  }
-
-  .open-stage{
-    transform:scale(.94);
+  50%{
+    opacity:1;
   }
 
 }
@@ -1431,19 +1401,18 @@ h1{
 
 <div class="noise"></div>
 
-<!-- ADMIN OCULTO -->
 <div
 class="admin-trigger"
 id="adminTrigger">
 </div>
 
+<!-- ====================================================
+     PRINCIPAL
+==================================================== -->
+
 <div class="app">
 
 <main class="container">
-
-<!-- =========================
-     CABECERA
-========================= -->
 
 <section class="intro">
 
@@ -1468,8 +1437,10 @@ CEREMONIA DE ENTREGA
 </div>
 
 <div class="victor">
+
 TRIBUTO ·
 <strong>SAMUEL</strong>
+
 </div>
 
 <div class="intro-text">
@@ -1486,9 +1457,6 @@ a tu victoria.
 
 </section>
 
-<!-- =========================
-     PROGRESO
-========================= -->
 
 <section class="progress-area">
 
@@ -1515,9 +1483,11 @@ id="progressBar">
 
 </section>
 
+
 <div class="section-title">
 CORRESPONDENCIA DEL VENCEDOR
 </div>
+
 
 <section
 class="envelopes"
@@ -1528,9 +1498,10 @@ id="envelopes">
 
 </div>
 
-<!-- =========================
+
+<!-- ====================================================
      APERTURA
-========================= -->
+==================================================== -->
 
 <div
 class="open-overlay"
@@ -1542,7 +1513,8 @@ id="closeLetter">
 ×
 </button>
 
-<div class="open-stage">
+
+<!-- SOBRE -->
 
 <div
 class="big-envelope"
@@ -1550,9 +1522,7 @@ id="bigEnvelope">
 
 <div class="big-flap"></div>
 
-<div
-class="big-seal"
-id="bigSeal">
+<div class="big-seal">
 
 <img
 id="bigSealImg"
@@ -1561,27 +1531,90 @@ alt="">
 
 </div>
 
-<article
-class="letter"
-id="letter">
+</div>
 
-<div class="letter-head">
 
-<div class="letter-emblem">
+<!-- CARTA -->
+
+<div
+class="letter-wrapper"
+id="letterWrapper">
+
+<div
+class="letter-card"
+id="letterCard">
+
+
+<!-- ==============================
+     ANVERSO
+============================== -->
+
+<div
+class="letter-face letter-front">
+
+<div class="front-logo">
 
 <img
-id="letterEmblemImg"
+id="frontLogo"
 src=""
 alt="">
 
 </div>
 
-<h2 id="letterTitle">
+<div
+class="front-type">
+
+RECOMPENSA DEL VENCEDOR
+
+</div>
+
+<div class="front-rule"></div>
+
+<div
+class="front-name"
+id="frontName">
+</div>
+
+<div
+class="front-industry"
+id="frontIndustry">
+</div>
+
+<div class="front-rule"></div>
+
+<div class="tap-hint">
+
+TOCA PARA LEER LA CARTA
+
+</div>
+
+</div>
+
+
+<!-- ==============================
+     REVERSO
+============================== -->
+
+<div
+class="letter-face letter-back">
+
+<div class="back-head">
+
+<div class="back-logo">
+
+<img
+id="backLogo"
+src=""
+alt="">
+
+</div>
+
+<h2 id="backName">
 </h2>
 
 <div
-class="industry"
-id="letterIndustry">
+class="back-industry"
+id="backIndustry">
 </div>
 
 </div>
@@ -1591,9 +1624,14 @@ class="letter-body"
 id="letterBody">
 </div>
 
-</article>
+</div>
 
 </div>
+
+</div>
+
+
+<!-- ACEPTAR -->
 
 <div
 class="accept-area"
@@ -1611,11 +1649,10 @@ ACEPTAR REGALO
 
 </div>
 
-</div>
 
-<!-- =========================
-     NUEVO DISTRITO
-========================= -->
+<!-- ====================================================
+     DESBLOQUEO
+==================================================== -->
 
 <div
 class="unlock-message"
@@ -1633,24 +1670,29 @@ alt="">
 </div>
 
 <div class="unlock-small">
+
 NUEVA CORRESPONDENCIA
+
 </div>
 
 <h2 id="unlockTitle">
 </h2>
 
 <p>
+
 Una nueva recompensa ha llegado
 para el vencedor.
+
 </p>
 
 </div>
 
 </div>
 
-<!-- =========================
+
+<!-- ====================================================
      FINAL
-========================= -->
+==================================================== -->
 
 <div
 class="final-screen"
@@ -1667,7 +1709,9 @@ alt="Capitolio">
 </div>
 
 <div class="capitol-small">
+
 CAPITOLIO DE PANEM
+
 </div>
 
 <h2>
@@ -1712,9 +1756,10 @@ Te los has ganado. ❤️
 
 </div>
 
-<!-- =========================
+
+<!-- ====================================================
      ADMIN
-========================= -->
+==================================================== -->
 
 <div
 class="admin"
@@ -1727,11 +1772,8 @@ Control de pruebas
 </h2>
 
 <p>
-
-Mantén pulsada la esquina superior
-izquierda durante unos segundos
-para acceder a este menú.
-
+Mantén pulsada la esquina superior izquierda
+para abrir este menú.
 </p>
 
 <div class="admin-grid">
@@ -1786,17 +1828,16 @@ Cerrar
 
 </div>
 
+
 <script>
 
-/* =========================================================
+/* ======================================================
    RECOMPENSAS
-========================================================= */
+====================================================== */
 
-const rewards = [
+const rewards=[
 
 {
-
-id:"capitol",
 
 name:"CAPITOLIO",
 
@@ -1819,9 +1860,8 @@ Y, sobre todo,
 </p>
 
 <p>
-El Capitolio ha decidido
-concederte una experiencia
-digna de sus ciudadanos.
+El Capitolio ha decidido concederte
+una experiencia digna de sus ciudadanos.
 </p>
 
 <div class="gift-reveal">
@@ -1842,7 +1882,11 @@ AMANECER EN LA COSECHA
 
 <br><br>
 
-🍿 MENÚ DE CINE INCLUIDO
+🎟️ ENTRADA DE CINE
+
+<br>
+
+🍿 MENÚ INCLUIDO
 
 </div>
 
@@ -1860,8 +1904,7 @@ Esta vez, por suerte,
 <br>
 
 <strong>
-desde el otro lado
-de la pantalla.
+desde el otro lado de la pantalla.
 </strong>
 
 </p>
@@ -1876,9 +1919,8 @@ de la pantalla.
 
 },
 
-{
 
-id:"d1",
+{
 
 name:"DISTRITO 1",
 
@@ -1894,7 +1936,7 @@ body:`
 Desde el Distrito 1,
 hogar de los lujos de Panem,
 ha llegado una recompensa
-reservada para el vencedor.
+para el vencedor.
 
 </p>
 
@@ -1910,27 +1952,16 @@ PRÓXIMAMENTE
 
 </div>
 
-<p>
-
-El contenido de este obsequio
-será revelado cuando llegue
-el momento.
-
-</p>
-
 <div class="sponsors">
-
 — Distrito 1
-
 </div>
 
 `
 
 },
 
-{
 
-id:"d2",
+{
 
 name:"DISTRITO 2",
 
@@ -1944,9 +1975,9 @@ body:`
 <p>
 
 El Distrito 2 reconoce
-la fuerza, disciplina
-y resistencia necesarias
-para sobrevivir a la Arena.
+la fuerza y resistencia
+necesarias para sobrevivir
+a la Arena.
 
 </p>
 
@@ -1962,26 +1993,16 @@ PRÓXIMAMENTE
 
 </div>
 
-<p>
-
-Una recompensa digna
-de quien ha logrado regresar.
-
-</p>
-
 <div class="sponsors">
-
 — Distrito 2
-
 </div>
 
 `
 
 },
 
-{
 
-id:"d8",
+{
 
 name:"DISTRITO 8",
 
@@ -2013,27 +2034,16 @@ PRÓXIMAMENTE
 
 </div>
 
-<p>
-
-Una pequeña parte
-de su industria viaja ahora
-fuera de sus fronteras.
-
-</p>
-
 <div class="sponsors">
-
 — Distrito 8
-
 </div>
 
 `
 
 },
 
-{
 
-id:"d11",
+{
 
 name:"DISTRITO 11",
 
@@ -2054,7 +2064,7 @@ durante generaciones.
 
 <p>
 
-Ahora, una parte de aquello
+Ahora una parte de aquello
 que producen ha sido reservada
 para celebrar tu victoria.
 
@@ -2073,18 +2083,15 @@ PRÓXIMAMENTE
 </div>
 
 <div class="sponsors">
-
 — Distrito 11
-
 </div>
 
 `
 
 },
 
-{
 
-id:"d12",
+{
 
 name:"DISTRITO 12",
 
@@ -2111,9 +2118,7 @@ entrar en la Arena...
 </p>
 
 <p>
-
 y conseguir regresar.
-
 </p>
 
 <div class="gift-reveal">
@@ -2129,9 +2134,7 @@ PRÓXIMAMENTE
 </div>
 
 <div class="sponsors">
-
 — Distrito 12
-
 </div>
 
 `
@@ -2141,107 +2144,101 @@ PRÓXIMAMENTE
 ];
 
 
-/* =========================================================
+/* ======================================================
    GUARDADO
-========================================================= */
+====================================================== */
 
-const STORAGE_KEY =
-"panem_rewards_v2";
+const STORAGE_KEY=
+"panem_rewards_v3";
 
-let progress =
+let progress=
 Number(
-localStorage.getItem(STORAGE_KEY) || 0
+localStorage.getItem(STORAGE_KEY)||0
 );
 
 if(
-Number.isNaN(progress) ||
-progress < 0 ||
-progress > rewards.length
+Number.isNaN(progress)||
+progress<0||
+progress>rewards.length
 ){
 
-progress = 0;
+progress=0;
 
 }
 
-let currentReward = null;
+let currentReward=null;
+
+let flipped=false;
 
 
-/* =========================================================
+/* ======================================================
    ELEMENTOS
-========================================================= */
+====================================================== */
 
-const envelopes =
+const envelopes=
 document.getElementById("envelopes");
 
-const progressText =
+const progressText=
 document.getElementById("progressText");
 
-const progressBar =
+const progressBar=
 document.getElementById("progressBar");
 
-const openOverlay =
+const openOverlay=
 document.getElementById("openOverlay");
 
-const bigEnvelope =
+const bigEnvelope=
 document.getElementById("bigEnvelope");
 
-const bigSealImg =
+const bigSealImg=
 document.getElementById("bigSealImg");
 
-const letterEmblemImg =
-document.getElementById(
-"letterEmblemImg"
-);
+const letterWrapper=
+document.getElementById("letterWrapper");
 
-const letterTitle =
-document.getElementById(
-"letterTitle"
-);
+const letterCard=
+document.getElementById("letterCard");
 
-const letterIndustry =
-document.getElementById(
-"letterIndustry"
-);
+const frontLogo=
+document.getElementById("frontLogo");
 
-const letterBody =
-document.getElementById(
-"letterBody"
-);
+const frontName=
+document.getElementById("frontName");
 
-const acceptArea =
-document.getElementById(
-"acceptArea"
-);
+const frontIndustry=
+document.getElementById("frontIndustry");
 
-const acceptBtn =
-document.getElementById(
-"acceptBtn"
-);
+const backLogo=
+document.getElementById("backLogo");
 
-const unlockMessage =
-document.getElementById(
-"unlockMessage"
-);
+const backName=
+document.getElementById("backName");
 
-const unlockImg =
-document.getElementById(
-"unlockImg"
-);
+const backIndustry=
+document.getElementById("backIndustry");
 
-const unlockTitle =
-document.getElementById(
-"unlockTitle"
-);
+const letterBody=
+document.getElementById("letterBody");
 
-const finalScreen =
-document.getElementById(
-"finalScreen"
-);
+const acceptArea=
+document.getElementById("acceptArea");
+
+const unlockMessage=
+document.getElementById("unlockMessage");
+
+const unlockImg=
+document.getElementById("unlockImg");
+
+const unlockTitle=
+document.getElementById("unlockTitle");
+
+const finalScreen=
+document.getElementById("finalScreen");
 
 
-/* =========================================================
+/* ======================================================
    RENDER
-========================================================= */
+====================================================== */
 
 function render(){
 
@@ -2250,27 +2247,27 @@ envelopes.innerHTML="";
 rewards.forEach(
 (reward,index)=>{
 
-const received =
-index < progress;
+const received=
+index<progress;
 
-const available =
-index === progress;
+const available=
+index===progress;
 
-const locked =
-index > progress;
+const locked=
+index>progress;
 
 
-const slot =
+const slot=
 document.createElement("div");
 
-slot.className =
+slot.className=
 "envelope-slot";
 
 
-const envelope =
+const envelope=
 document.createElement("div");
 
-envelope.className =
+envelope.className=
 "envelope";
 
 
@@ -2291,7 +2288,7 @@ envelope.classList.add(
 }
 
 
-envelope.innerHTML = `
+envelope.innerHTML=`
 
 <div class="flap"></div>
 
@@ -2306,11 +2303,7 @@ alt="${reward.name}">
 ${
 locked
 ?
-`
-<div class="lock-icon">
-⌁
-</div>
-`
+`<div class="lock-icon">⌁</div>`
 :
 ""
 }
@@ -2318,10 +2311,7 @@ locked
 ${
 available
 ?
-`
-<div class="new-dot">
-</div>
-`
+`<div class="new-dot"></div>`
 :
 ""
 }
@@ -2329,50 +2319,38 @@ available
 `;
 
 
-/* ABRIR */
-
 if(!locked){
 
 envelope.addEventListener(
 "click",
-()=>{
-
-openReward(index);
-
-}
+()=>openReward(index)
 );
 
 }
 
 
-/* NOMBRE */
-
-const name =
+const name=
 document.createElement("div");
 
-name.className =
+name.className=
 "env-name";
 
-name.textContent =
+name.textContent=
 reward.name;
 
 
-/* ESTADO */
-
-const state =
+const state=
 document.createElement("div");
 
-state.className =
+state.className=
 "env-state";
 
 
 if(received){
 
-state.classList.add(
-"done"
-);
+state.classList.add("done");
 
-state.textContent =
+state.textContent=
 "✓ REGALO RECIBIDO";
 
 }
@@ -2383,93 +2361,96 @@ state.classList.add(
 "available"
 );
 
-state.textContent =
+state.textContent=
 "● NUEVA RECOMPENSA";
 
 }
 
 else{
 
-state.textContent =
+state.textContent=
 "RECOMPENSA BLOQUEADA";
 
 }
 
 
-slot.appendChild(
-envelope
-);
+slot.appendChild(envelope);
+slot.appendChild(name);
+slot.appendChild(state);
 
-slot.appendChild(
-name
-);
-
-slot.appendChild(
-state
-);
-
-envelopes.appendChild(
-slot
-);
+envelopes.appendChild(slot);
 
 });
 
 
-progressText.textContent =
+progressText.textContent=
 `${progress} / ${rewards.length}`;
 
 
-progressBar.style.width =
-`${(progress / rewards.length) * 100}%`;
+progressBar.style.width=
+`${progress/rewards.length*100}%`;
 
 }
 
 
-/* =========================================================
-   ABRIR CARTA
-========================================================= */
+/* ======================================================
+   ABRIR SOBRE
+====================================================== */
 
 function openReward(index){
 
-currentReward =
-index;
+currentReward=index;
 
-const reward =
+flipped=false;
+
+const reward=
 rewards[index];
 
 
-/* IMÁGENES */
+/* datos */
 
-bigSealImg.src =
+bigSealImg.src=
 reward.logo;
 
-bigSealImg.alt =
-reward.name;
-
-letterEmblemImg.src =
+frontLogo.src=
 reward.logo;
 
-letterEmblemImg.alt =
+backLogo.src=
+reward.logo;
+
+
+frontName.textContent=
+reward.name;
+
+backName.textContent=
 reward.name;
 
 
-/* TEXTO */
-
-letterTitle.textContent =
-reward.name;
-
-letterIndustry.textContent =
+frontIndustry.textContent=
 reward.industry;
 
-letterBody.innerHTML =
+backIndustry.textContent=
+reward.industry;
+
+
+letterBody.innerHTML=
 reward.body;
 
 
-/* RESET ANIMACIÓN */
+/* reset */
 
 bigEnvelope.classList.remove(
 "opening",
-"letter-out"
+"leave"
+);
+
+letterWrapper.classList.remove(
+"rising",
+"centered"
+);
+
+letterCard.classList.remove(
+"flipped"
 );
 
 acceptArea.classList.remove(
@@ -2477,14 +2458,16 @@ acceptArea.classList.remove(
 );
 
 
-/* ABRIR OVERLAY */
+/* mostrar */
 
 openOverlay.classList.add(
 "active"
 );
 
 
-/* SOBRE APARECE */
+/* 1 — aparece sobre */
+
+/* 2 — abre */
 
 setTimeout(()=>{
 
@@ -2495,37 +2478,93 @@ bigEnvelope.classList.add(
 },650);
 
 
-/* CARTA SALE */
+/* 3 — carta empieza a salir */
+
+setTimeout(()=>{
+
+letterWrapper.classList.add(
+"rising"
+);
+
+},1300);
+
+
+/* 4 — sobre desaparece */
 
 setTimeout(()=>{
 
 bigEnvelope.classList.add(
-"letter-out"
+"leave"
 );
 
-},1400);
+},2050);
 
 
-/* BOTÓN ACEPTAR */
+/* 5 — carta queda centrada */
 
 setTimeout(()=>{
 
-if(index === progress){
-
-acceptArea.classList.add(
-"show"
+letterWrapper.classList.remove(
+"rising"
 );
 
-}
+letterWrapper.classList.add(
+"centered"
+);
 
 },2350);
 
 }
 
 
-/* =========================================================
+/* ======================================================
+   GIRAR CARTA
+====================================================== */
+
+letterCard.addEventListener(
+"click",
+()=>{
+
+/*
+Solo permitimos el primer giro
+del anverso al reverso.
+*/
+
+if(flipped){
+return;
+}
+
+flipped=true;
+
+letterCard.classList.add(
+"flipped"
+);
+
+
+/*
+Si es la recompensa nueva,
+mostramos aceptar.
+*/
+
+if(currentReward===progress){
+
+setTimeout(()=>{
+
+acceptArea.classList.add(
+"show"
+);
+
+},600);
+
+}
+
+}
+);
+
+
+/* ======================================================
    CERRAR
-========================================================= */
+====================================================== */
 
 function closeLetter(){
 
@@ -2541,7 +2580,16 @@ setTimeout(()=>{
 
 bigEnvelope.classList.remove(
 "opening",
-"letter-out"
+"leave"
+);
+
+letterWrapper.classList.remove(
+"rising",
+"centered"
+);
+
+letterCard.classList.remove(
+"flipped"
 );
 
 },450);
@@ -2550,20 +2598,20 @@ bigEnvelope.classList.remove(
 
 
 document
-.getElementById(
-"closeLetter"
-)
+.getElementById("closeLetter")
 .addEventListener(
 "click",
 closeLetter
 );
 
 
-/* =========================================================
-   ACEPTAR REGALO
-========================================================= */
+/* ======================================================
+   ACEPTAR
+====================================================== */
 
-acceptBtn.addEventListener(
+document
+.getElementById("acceptBtn")
+.addEventListener(
 "click",
 acceptCurrentReward
 );
@@ -2571,27 +2619,16 @@ acceptCurrentReward
 
 function acceptCurrentReward(){
 
-if(
-currentReward !== progress
-){
+if(currentReward!==progress){
 return;
 }
 
-
-/* avanzar */
-
 progress++;
-
-
-/* guardar */
 
 localStorage.setItem(
 STORAGE_KEY,
 progress
 );
-
-
-/* cerrar */
 
 closeLetter();
 
@@ -2601,11 +2638,7 @@ setTimeout(()=>{
 render();
 
 
-/* FINAL */
-
-if(
-progress >= rewards.length
-){
+if(progress>=rewards.length){
 
 setTimeout(
 showFinal,
@@ -2617,18 +2650,13 @@ return;
 }
 
 
-/* NUEVO DISTRITO */
-
-const next =
+const next=
 rewards[progress];
 
-unlockImg.src =
+unlockImg.src=
 next.logo;
 
-unlockImg.alt =
-next.name;
-
-unlockTitle.textContent =
+unlockTitle.textContent=
 `${next.name} desbloqueado`;
 
 
@@ -2651,9 +2679,9 @@ unlockMessage.classList.remove(
 }
 
 
-/* =========================================================
+/* ======================================================
    FINAL
-========================================================= */
+====================================================== */
 
 function showFinal(){
 
@@ -2676,16 +2704,14 @@ finalScreen.classList.remove(
 );
 
 
-/* =========================================================
-   ADMIN OCULTO
-========================================================= */
+/* ======================================================
+   ADMIN
+====================================================== */
 
-const admin =
-document.getElementById(
-"admin"
-);
+const admin=
+document.getElementById("admin");
 
-const adminTrigger =
+const adminTrigger=
 document.getElementById(
 "adminTrigger"
 );
@@ -2693,11 +2719,9 @@ document.getElementById(
 let pressTimer;
 
 
-/* MANTENER PULSADO */
-
 function startAdminPress(){
 
-pressTimer =
+pressTimer=
 setTimeout(()=>{
 
 admin.classList.add(
@@ -2718,14 +2742,10 @@ pressTimer
 }
 
 
-/* TOUCH */
-
 adminTrigger.addEventListener(
 "touchstart",
 startAdminPress,
-{
-passive:true
-}
+{passive:true}
 );
 
 adminTrigger.addEventListener(
@@ -2738,9 +2758,6 @@ adminTrigger.addEventListener(
 cancelAdminPress
 );
 
-
-/* RATÓN */
-
 adminTrigger.addEventListener(
 "mousedown",
 startAdminPress
@@ -2751,13 +2768,6 @@ adminTrigger.addEventListener(
 cancelAdminPress
 );
 
-adminTrigger.addEventListener(
-"mouseleave",
-cancelAdminPress
-);
-
-
-/* CERRAR ADMIN */
 
 function closeAdmin(){
 
@@ -2767,8 +2777,6 @@ admin.classList.remove(
 
 }
 
-
-/* CAMBIAR PROGRESO */
 
 function setProgress(value){
 
@@ -2785,8 +2793,6 @@ closeAdmin();
 
 }
 
-
-/* RESET */
 
 function resetEverything(){
 
@@ -2807,9 +2813,9 @@ closeAdmin();
 }
 
 
-/* =========================================================
+/* ======================================================
    INICIO
-========================================================= */
+====================================================== */
 
 render();
 
