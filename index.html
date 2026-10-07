@@ -1,0 +1,2173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width,
+               initial-scale=1.0,
+               maximum-scale=1.0,
+               user-scalable=no,
+               viewport-fit=cover">
+
+<meta name="theme-color" content="#050606">
+
+<title>Recompensas del Vencedor</title>
+
+<style>
+
+:root{
+  --bg:#050606;
+  --panel:#0d0f0f;
+  --panel2:#151817;
+  --gold:#c5a35b;
+  --goldLight:#e0c985;
+  --goldDark:#756039;
+  --text:#eee9dd;
+  --muted:#8e8c84;
+  --green:#8fa873;
+  --red:#9c4d46;
+}
+
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+  margin:0;
+  width:100%;
+  min-height:100%;
+  background:#050606;
+}
+
+body{
+  color:var(--text);
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Display",
+    "Segoe UI",
+    sans-serif;
+
+  overflow-x:hidden;
+  background:
+    radial-gradient(
+      circle at 50% -10%,
+      rgba(197,163,91,.13),
+      transparent 36rem
+    ),
+    linear-gradient(
+      180deg,
+      #070808 0%,
+      #030404 100%
+    );
+}
+
+button{
+  font:inherit;
+}
+
+/* ===============================
+   FONDO
+================================ */
+
+.noise{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:.18;
+  z-index:100;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(255,255,255,.015) 3px
+    );
+}
+
+.glow{
+  position:fixed;
+  width:420px;
+  height:420px;
+  border-radius:50%;
+  background:rgba(197,163,91,.055);
+  filter:blur(90px);
+  top:-200px;
+  left:50%;
+  transform:translateX(-50%);
+  pointer-events:none;
+}
+
+/* ===============================
+   CONTENEDOR
+================================ */
+
+.app{
+  width:100%;
+  min-height:100svh;
+  padding:
+    calc(30px + env(safe-area-inset-top))
+    18px
+    calc(35px + env(safe-area-inset-bottom));
+}
+
+.container{
+  width:100%;
+  max-width:520px;
+  margin:auto;
+}
+
+/* ===============================
+   INTRO
+================================ */
+
+.intro{
+  text-align:center;
+  padding:20px 8px 27px;
+  animation:fadeUp .9s ease both;
+}
+
+.capitol-small{
+  font-size:10px;
+  letter-spacing:4px;
+  color:var(--gold);
+  margin-bottom:17px;
+}
+
+.main-symbol{
+  width:82px;
+  height:82px;
+  margin:0 auto 18px;
+
+  border:1px solid rgba(197,163,91,.6);
+  border-radius:50%;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  position:relative;
+
+  box-shadow:
+    0 0 35px rgba(197,163,91,.10),
+    inset 0 0 20px rgba(197,163,91,.06);
+}
+
+.main-symbol::before{
+  content:"";
+  position:absolute;
+  inset:6px;
+  border:1px solid rgba(197,163,91,.18);
+  border-radius:50%;
+}
+
+.main-symbol span{
+  font-family:Georgia,serif;
+  color:var(--gold);
+  font-size:37px;
+}
+
+h1{
+  margin:0;
+  font-family:Georgia,serif;
+  font-weight:400;
+  font-size:29px;
+  letter-spacing:1.2px;
+}
+
+.subtitle{
+  color:var(--gold);
+  font-size:11px;
+  letter-spacing:3px;
+  margin-top:8px;
+}
+
+.victor{
+  margin-top:24px;
+  font-size:12px;
+  letter-spacing:2px;
+  color:var(--muted);
+}
+
+.victor strong{
+  color:var(--text);
+  font-weight:500;
+}
+
+.intro-text{
+  margin:19px auto 0;
+  max-width:360px;
+  font-family:Georgia,serif;
+  line-height:1.65;
+  color:#aaa69c;
+  font-size:14px;
+}
+
+/* ===============================
+   PROGRESO
+================================ */
+
+.progress-area{
+  margin:4px 0 25px;
+  animation:fadeUp .9s .15s ease both;
+}
+
+.progress-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:8px;
+
+  font-size:10px;
+  letter-spacing:2px;
+  color:var(--muted);
+}
+
+.progress-top strong{
+  color:var(--gold);
+  font-weight:500;
+}
+
+.progress-track{
+  height:2px;
+  width:100%;
+  background:#1a1d1c;
+  overflow:hidden;
+}
+
+.progress-bar{
+  height:100%;
+  width:0%;
+  background:linear-gradient(
+    90deg,
+    var(--goldDark),
+    var(--goldLight)
+  );
+  transition:width .8s cubic-bezier(.2,.8,.2,1);
+}
+
+/* ===============================
+   SECCIÓN SOBRES
+================================ */
+
+.section-title{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:20px;
+
+  font-size:10px;
+  letter-spacing:2.5px;
+  color:#77766f;
+}
+
+.section-title::before,
+.section-title::after{
+  content:"";
+  height:1px;
+  flex:1;
+  background:linear-gradient(
+    90deg,
+    transparent,
+    rgba(197,163,91,.25)
+  );
+}
+
+.section-title::after{
+  transform:scaleX(-1);
+}
+
+/* ===============================
+   GRID
+================================ */
+
+.envelopes{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px 12px;
+  padding-bottom:20px;
+}
+
+.envelope-slot{
+  text-align:center;
+  animation:fadeUp .7s ease both;
+}
+
+.envelope-slot:nth-child(2){animation-delay:.06s}
+.envelope-slot:nth-child(3){animation-delay:.12s}
+.envelope-slot:nth-child(4){animation-delay:.18s}
+.envelope-slot:nth-child(5){animation-delay:.24s}
+.envelope-slot:nth-child(6){animation-delay:.30s}
+
+/* ===============================
+   SOBRE
+================================ */
+
+.envelope{
+  width:100%;
+  aspect-ratio:1.42/1;
+
+  border:1px solid rgba(197,163,91,.30);
+  background:
+    linear-gradient(
+      145deg,
+      #191916,
+      #0e100f
+    );
+
+  position:relative;
+  overflow:hidden;
+  cursor:pointer;
+
+  transition:
+    transform .25s ease,
+    opacity .3s ease,
+    border-color .3s ease;
+
+  box-shadow:
+    0 8px 25px rgba(0,0,0,.35),
+    inset 0 0 30px rgba(197,163,91,.025);
+}
+
+.envelope:not(.locked):active{
+  transform:scale(.97);
+}
+
+.envelope::before{
+  content:"";
+  position:absolute;
+  left:-10%;
+  bottom:-64%;
+  width:72%;
+  height:120%;
+  border-top:1px solid rgba(197,163,91,.16);
+  transform:rotate(32deg);
+}
+
+.envelope::after{
+  content:"";
+  position:absolute;
+  right:-10%;
+  bottom:-64%;
+  width:72%;
+  height:120%;
+  border-top:1px solid rgba(197,163,91,.16);
+  transform:rotate(-32deg);
+}
+
+/* solapa */
+
+.flap{
+  position:absolute;
+  z-index:1;
+  top:0;
+  left:0;
+  width:100%;
+  height:62%;
+
+  clip-path:polygon(
+    0 0,
+    100% 0,
+    50% 100%
+  );
+
+  background:
+    linear-gradient(
+      180deg,
+      #20201c,
+      #131512
+    );
+
+  border-bottom:1px solid rgba(197,163,91,.20);
+}
+
+/* sello */
+
+.seal{
+  position:absolute;
+  z-index:4;
+
+  width:46px;
+  height:46px;
+  left:50%;
+  top:50%;
+
+  transform:translate(-50%,-37%);
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle at 35% 30%,
+      #d1b56e,
+      #8a6d34 58%,
+      #4c3b1d
+    );
+
+  border:1px solid #d1b56e;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  box-shadow:
+    0 4px 12px rgba(0,0,0,.45),
+    inset 0 0 0 3px rgba(0,0,0,.15);
+
+  color:#171711;
+  font-family:Georgia,serif;
+  font-size:16px;
+  font-weight:bold;
+}
+
+.seal::after{
+  content:"";
+  position:absolute;
+  inset:5px;
+  border:1px solid rgba(20,20,15,.5);
+  border-radius:50%;
+}
+
+/* estados */
+
+.envelope.locked{
+  opacity:.27;
+  filter:grayscale(1);
+  cursor:default;
+}
+
+.envelope.received{
+  border-color:rgba(143,168,115,.42);
+}
+
+.envelope.received .seal{
+  filter:saturate(.5);
+}
+
+.lock-icon{
+  position:absolute;
+  right:8px;
+  top:8px;
+  z-index:7;
+
+  width:24px;
+  height:24px;
+  border-radius:50%;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:rgba(0,0,0,.6);
+  border:1px solid #3b3c39;
+
+  font-size:10px;
+  color:#85857f;
+}
+
+.new-dot{
+  position:absolute;
+  right:9px;
+  top:9px;
+  z-index:8;
+
+  width:7px;
+  height:7px;
+  border-radius:50%;
+
+  background:var(--goldLight);
+
+  box-shadow:
+    0 0 10px rgba(224,201,133,.8);
+
+  animation:pulse 1.8s infinite;
+}
+
+/* texto debajo */
+
+.env-name{
+  margin-top:9px;
+  font-size:11px;
+  letter-spacing:1.8px;
+  color:#c9c5b8;
+}
+
+.env-state{
+  margin-top:4px;
+  font-size:8px;
+  letter-spacing:1.5px;
+  color:#696a65;
+}
+
+.env-state.available{
+  color:var(--gold);
+}
+
+.env-state.done{
+  color:var(--green);
+}
+
+/* ===============================
+   OVERLAY APERTURA
+================================ */
+
+.open-overlay{
+  position:fixed;
+  z-index:50;
+  inset:0;
+
+  background:
+    radial-gradient(
+      circle at 50% 35%,
+      #141512,
+      #050606 60%
+    );
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:
+    calc(25px + env(safe-area-inset-top))
+    18px
+    calc(25px + env(safe-area-inset-bottom));
+
+  opacity:0;
+  visibility:hidden;
+
+  transition:
+    opacity .45s ease,
+    visibility .45s ease;
+}
+
+.open-overlay.active{
+  opacity:1;
+  visibility:visible;
+}
+
+.open-stage{
+  width:100%;
+  max-width:410px;
+  height:590px;
+  position:relative;
+}
+
+/* sobre grande */
+
+.big-envelope{
+  position:absolute;
+  width:310px;
+  height:210px;
+
+  left:50%;
+  top:50%;
+
+  transform:
+    translate(-50%,-50%)
+    scale(.82);
+
+  opacity:0;
+
+  background:
+    linear-gradient(
+      145deg,
+      #1e1f1b,
+      #0e100f
+    );
+
+  border:1px solid rgba(197,163,91,.45);
+
+  box-shadow:
+    0 25px 70px rgba(0,0,0,.7);
+
+  transition:
+    transform .6s cubic-bezier(.2,.8,.2,1),
+    opacity .4s ease,
+    top .8s ease;
+}
+
+.open-overlay.active .big-envelope{
+  opacity:1;
+  transform:
+    translate(-50%,-50%)
+    scale(1);
+}
+
+.big-envelope .big-flap{
+  position:absolute;
+  z-index:5;
+  width:100%;
+  height:58%;
+
+  transform-origin:top;
+  transform:rotateX(0deg);
+
+  clip-path:polygon(
+    0 0,
+    100% 0,
+    50% 100%
+  );
+
+  background:
+    linear-gradient(
+      #292821,
+      #151612
+    );
+
+  transition:
+    transform .8s cubic-bezier(.4,0,.2,1);
+}
+
+.big-envelope.opening .big-flap{
+  transform:rotateX(180deg);
+}
+
+.big-envelope .big-seal{
+  position:absolute;
+  z-index:8;
+
+  width:62px;
+  height:62px;
+
+  left:50%;
+  top:50%;
+
+  transform:translate(-50%,-40%);
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle at 35% 30%,
+      #d8bd76,
+      #8c6d34 60%,
+      #493819
+    );
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  color:#171711;
+  font-family:Georgia,serif;
+  font-size:21px;
+  font-weight:bold;
+
+  border:1px solid #e0c985;
+
+  box-shadow:
+    0 7px 18px rgba(0,0,0,.5);
+
+  transition:
+    opacity .25s ease,
+    transform .4s ease;
+}
+
+.big-envelope.opening .big-seal{
+  opacity:0;
+  transform:
+    translate(-50%,-40%)
+    scale(.6);
+}
+
+/* ===============================
+   CARTA
+================================ */
+
+.letter{
+  position:absolute;
+  z-index:3;
+
+  width:280px;
+  height:390px;
+
+  left:50%;
+  top:50%;
+
+  transform:
+    translate(-50%,-20%)
+    scale(.88);
+
+  opacity:0;
+
+  background:
+    linear-gradient(
+      145deg,
+      #e5dfcc,
+      #cfc7af
+    );
+
+  color:#24241e;
+
+  padding:26px 22px;
+
+  box-shadow:
+    0 15px 45px rgba(0,0,0,.55);
+
+  overflow:auto;
+
+  transition:
+    transform 1s cubic-bezier(.2,.8,.2,1),
+    opacity .5s ease,
+    height .5s ease,
+    width .5s ease;
+}
+
+.big-envelope.opening .letter{
+  opacity:1;
+}
+
+.big-envelope.letter-out{
+  top:82%;
+}
+
+.big-envelope.letter-out .letter{
+  transform:
+    translate(-50%,-115%)
+    scale(1);
+}
+
+.letter-head{
+  text-align:center;
+  border-bottom:1px solid rgba(40,40,30,.22);
+  padding-bottom:15px;
+  margin-bottom:17px;
+}
+
+.letter-emblem{
+  width:48px;
+  height:48px;
+  margin:0 auto 10px;
+
+  border:1px solid #756039;
+  border-radius:50%;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-family:Georgia,serif;
+  color:#756039;
+  font-size:22px;
+}
+
+.letter h2{
+  font-family:Georgia,serif;
+  font-size:20px;
+  font-weight:400;
+  letter-spacing:1px;
+  margin:0;
+}
+
+.industry{
+  margin-top:5px;
+  font-size:8px;
+  letter-spacing:2px;
+  color:#746d5c;
+}
+
+.letter-body{
+  text-align:center;
+  font-family:Georgia,serif;
+  font-size:13px;
+  line-height:1.55;
+}
+
+.letter-body p{
+  margin:0 0 12px;
+}
+
+.gift-reveal{
+  margin:18px 0;
+
+  padding:15px 9px;
+
+  border-top:1px solid rgba(117,96,57,.4);
+  border-bottom:1px solid rgba(117,96,57,.4);
+
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+
+  font-size:13px;
+  line-height:1.5;
+
+  letter-spacing:.6px;
+  font-weight:600;
+}
+
+.gift-reveal strong{
+  font-family:Georgia,serif;
+  font-size:16px;
+}
+
+.sponsors{
+  margin-top:17px;
+  color:#665f50;
+  font-size:11px;
+  font-style:italic;
+}
+
+/* ===============================
+   BOTÓN ACEPTAR
+================================ */
+
+.accept-area{
+  position:absolute;
+  z-index:20;
+
+  bottom:0;
+  left:0;
+  width:100%;
+
+  text-align:center;
+
+  opacity:0;
+  pointer-events:none;
+
+  transform:translateY(15px);
+
+  transition:
+    opacity .5s ease,
+    transform .5s ease;
+}
+
+.accept-area.show{
+  opacity:1;
+  pointer-events:auto;
+  transform:translateY(0);
+}
+
+.accept-btn{
+  width:100%;
+  max-width:310px;
+  min-height:52px;
+
+  border:1px solid var(--gold);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(197,163,91,.16),
+      rgba(197,163,91,.06)
+    );
+
+  color:var(--goldLight);
+
+  letter-spacing:2px;
+  font-size:11px;
+
+  cursor:pointer;
+}
+
+.accept-btn:active{
+  transform:scale(.98);
+}
+
+.close-btn{
+  position:absolute;
+  z-index:100;
+  top:calc(12px + env(safe-area-inset-top));
+  right:15px;
+
+  width:38px;
+  height:38px;
+
+  border-radius:50%;
+  border:1px solid #32332f;
+
+  background:rgba(0,0,0,.35);
+
+  color:#8e8e87;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  cursor:pointer;
+}
+
+/* ===============================
+   DESBLOQUEO
+================================ */
+
+.unlock-message{
+  position:fixed;
+  z-index:80;
+  inset:0;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:30px;
+
+  background:rgba(3,4,4,.94);
+
+  opacity:0;
+  visibility:hidden;
+
+  transition:.45s ease;
+}
+
+.unlock-message.show{
+  opacity:1;
+  visibility:visible;
+}
+
+.unlock-box{
+  text-align:center;
+  max-width:330px;
+}
+
+.unlock-icon{
+  width:70px;
+  height:70px;
+
+  margin:0 auto 22px;
+
+  border:1px solid var(--gold);
+  border-radius:50%;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:25px;
+  color:var(--gold);
+
+  box-shadow:
+    0 0 40px rgba(197,163,91,.13);
+}
+
+.unlock-small{
+  font-size:9px;
+  letter-spacing:3px;
+  color:var(--gold);
+}
+
+.unlock-box h2{
+  font-family:Georgia,serif;
+  font-weight:400;
+  font-size:25px;
+  margin:12px 0;
+}
+
+.unlock-box p{
+  color:#98978f;
+  font-family:Georgia,serif;
+  line-height:1.6;
+  font-size:14px;
+}
+
+/* ===============================
+   FINAL
+================================ */
+
+.final-screen{
+  position:fixed;
+  z-index:90;
+  inset:0;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:30px;
+
+  background:
+    radial-gradient(
+      circle at center,
+      #191a15,
+      #050606 62%
+    );
+
+  opacity:0;
+  visibility:hidden;
+
+  transition:.7s ease;
+}
+
+.final-screen.show{
+  opacity:1;
+  visibility:visible;
+}
+
+.final-content{
+  text-align:center;
+  max-width:360px;
+}
+
+.final-symbol{
+  font-family:Georgia,serif;
+  font-size:55px;
+  color:var(--gold);
+  margin-bottom:20px;
+}
+
+.final-content h2{
+  font-family:Georgia,serif;
+  font-weight:400;
+  font-size:27px;
+  line-height:1.25;
+}
+
+.final-content p{
+  color:#aaa89f;
+  font-family:Georgia,serif;
+  line-height:1.7;
+  font-size:14px;
+}
+
+.final-sign{
+  margin-top:25px;
+  color:var(--gold);
+  letter-spacing:1px;
+}
+
+/* ===============================
+   ADMIN
+================================ */
+
+.admin-trigger{
+  position:fixed;
+  z-index:120;
+  left:0;
+  top:0;
+  width:60px;
+  height:60px;
+}
+
+.admin{
+  position:fixed;
+  z-index:130;
+  inset:0;
+
+  background:rgba(3,4,4,.97);
+
+  padding:
+    calc(30px + env(safe-area-inset-top))
+    20px
+    calc(30px + env(safe-area-inset-bottom));
+
+  display:none;
+  overflow:auto;
+}
+
+.admin.show{
+  display:block;
+}
+
+.admin-inner{
+  max-width:420px;
+  margin:auto;
+}
+
+.admin h2{
+  font-family:Georgia,serif;
+  color:var(--gold);
+}
+
+.admin p{
+  color:#888;
+  font-size:13px;
+}
+
+.admin-grid{
+  display:grid;
+  gap:10px;
+  margin-top:20px;
+}
+
+.admin button{
+  padding:15px;
+  background:#101211;
+  color:#d5d0c4;
+  border:1px solid #35362f;
+}
+
+.admin .danger{
+  border-color:#633d39;
+  color:#bd7169;
+}
+
+/* ===============================
+   ANIMACIONES
+================================ */
+
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform:translateY(12px);
+  }
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
+
+@keyframes pulse{
+  0%,100%{
+    opacity:.45;
+    transform:scale(.9);
+  }
+  50%{
+    opacity:1;
+    transform:scale(1.15);
+  }
+}
+
+/* móvil pequeño */
+
+@media(max-width:370px){
+
+  .envelopes{
+    gap:14px 9px;
+  }
+
+  .env-name{
+    font-size:10px;
+  }
+
+  .open-stage{
+    transform:scale(.92);
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="noise"></div>
+<div class="glow"></div>
+
+<div class="admin-trigger" id="adminTrigger"></div>
+
+<div class="app">
+
+  <main class="container">
+
+    <section class="intro">
+
+      <div class="capitol-small">
+        CAPITOLIO DE PANEM
+      </div>
+
+      <div class="main-symbol">
+        <span>✦</span>
+      </div>
+
+      <h1>
+        Recompensas del Vencedor
+      </h1>
+
+      <div class="subtitle">
+        CEREMONIA DE ENTREGA
+      </div>
+
+      <div class="victor">
+        TRIBUTO · <strong>SAMUEL</strong>
+      </div>
+
+      <div class="intro-text">
+        Has sobrevivido a la Arena.
+        <br><br>
+        Los distritos de Panem han enviado
+        obsequios en reconocimiento a tu victoria.
+      </div>
+
+    </section>
+
+    <section class="progress-area">
+
+      <div class="progress-top">
+
+        <span>RECOMPENSAS RECIBIDAS</span>
+
+        <strong id="progressText">
+          0 / 6
+        </strong>
+
+      </div>
+
+      <div class="progress-track">
+        <div
+          class="progress-bar"
+          id="progressBar">
+        </div>
+      </div>
+
+    </section>
+
+    <div class="section-title">
+      CORRESPONDENCIA
+    </div>
+
+    <section
+      class="envelopes"
+      id="envelopes">
+    </section>
+
+  </main>
+
+</div>
+
+<!-- ==========================
+     APERTURA DE CARTA
+=========================== -->
+
+<div
+  class="open-overlay"
+  id="openOverlay">
+
+  <button
+    class="close-btn"
+    id="closeLetter">
+    ×
+  </button>
+
+  <div class="open-stage">
+
+    <div
+      class="big-envelope"
+      id="bigEnvelope">
+
+      <div class="big-flap"></div>
+
+      <div
+        class="big-seal"
+        id="bigSeal">
+        C
+      </div>
+
+      <article
+        class="letter"
+        id="letter">
+
+        <div class="letter-head">
+
+          <div
+            class="letter-emblem"
+            id="letterEmblem">
+            C
+          </div>
+
+          <h2 id="letterTitle">
+            CAPITOLIO
+          </h2>
+
+          <div
+            class="industry"
+            id="letterIndustry">
+          </div>
+
+        </div>
+
+        <div
+          class="letter-body"
+          id="letterBody">
+        </div>
+
+      </article>
+
+    </div>
+
+    <div
+      class="accept-area"
+      id="acceptArea">
+
+      <button
+        class="accept-btn"
+        id="acceptBtn">
+        ACEPTAR REGALO
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- ==========================
+     DESBLOQUEO
+=========================== -->
+
+<div
+  class="unlock-message"
+  id="unlockMessage">
+
+  <div class="unlock-box">
+
+    <div class="unlock-icon">
+      ✦
+    </div>
+
+    <div class="unlock-small">
+      NUEVA CORRESPONDENCIA
+    </div>
+
+    <h2 id="unlockTitle">
+      Distrito desbloqueado
+    </h2>
+
+    <p id="unlockText">
+      Una nueva recompensa te espera.
+    </p>
+
+  </div>
+
+</div>
+
+<!-- ==========================
+     FINAL
+=========================== -->
+
+<div
+  class="final-screen"
+  id="finalScreen">
+
+  <div class="final-content">
+
+    <div class="final-symbol">
+      ✦
+    </div>
+
+    <div class="capitol-small">
+      CAPITOLIO DE PANEM
+    </div>
+
+    <h2>
+      Todas las recompensas
+      han sido entregadas.
+    </h2>
+
+    <p>
+      Los Juegos han terminado.
+      <br><br>
+
+      Has sobrevivido a la Arena
+      y reclamado todo aquello
+      que te esperaba al otro lado.
+      <br><br>
+
+      El vencedor puede regresar a casa.
+    </p>
+
+    <div class="final-sign">
+      Disfruta de tus regalos.
+      <br>
+      Te los has ganado. ❤️
+      <br><br>
+      — Tus patrocinadores
+    </div>
+
+  </div>
+
+</div>
+
+<!-- ==========================
+     ADMIN
+=========================== -->
+
+<div
+  class="admin"
+  id="admin">
+
+  <div class="admin-inner">
+
+    <h2>Control de pruebas</h2>
+
+    <p>
+      Este menú solo sirve para probar
+      los distintos estados de la web.
+    </p>
+
+    <div class="admin-grid">
+
+      <button onclick="setProgress(0)">
+        Solo Capitolio
+      </button>
+
+      <button onclick="setProgress(1)">
+        Capitolio recibido → D1
+      </button>
+
+      <button onclick="setProgress(2)">
+        Hasta Distrito 1 → D2
+      </button>
+
+      <button onclick="setProgress(3)">
+        Hasta Distrito 2 → D8
+      </button>
+
+      <button onclick="setProgress(4)">
+        Hasta Distrito 8 → D11
+      </button>
+
+      <button onclick="setProgress(5)">
+        Hasta Distrito 11 → D12
+      </button>
+
+      <button onclick="setProgress(6)">
+        Todos recibidos
+      </button>
+
+      <button onclick="showFinal()">
+        Probar pantalla final
+      </button>
+
+      <button
+        class="danger"
+        onclick="resetEverything()">
+        RESET COMPLETO
+      </button>
+
+      <button onclick="closeAdmin()">
+        Cerrar
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+
+/* ==========================================================
+   CONFIGURACIÓN DE DISTRITOS
+========================================================== */
+
+const rewards = [
+
+  {
+    id:"capitol",
+    short:"C",
+    name:"CAPITOLIO",
+    industry:"INDUSTRIA · ENTRETENIMIENTO",
+
+    body:`
+      <p>
+        Los Juegos no son solo supervivencia.
+      </p>
+
+      <p>
+        Son espectáculo.<br>
+        Son tradición.<br>
+        Y, sobre todo,
+        <strong>entretenimiento</strong>.
+      </p>
+
+      <p>
+        El Capitolio ha decidido concederte
+        una experiencia digna de sus ciudadanos.
+      </p>
+
+      <div class="gift-reveal">
+
+        <strong>
+          ENTRADA PARA
+        </strong>
+
+        <br>
+
+        LOS JUEGOS DEL HAMBRE:
+        <br>
+
+        <strong>
+          AMANECER EN LA COSECHA
+        </strong>
+
+        <br><br>
+
+        🍿 + MENÚ DE CINE
+
+      </div>
+
+      <p>
+        Cuando llegue el momento,
+        volverás a Panem.
+      </p>
+
+      <p>
+        Esta vez, por suerte,
+        <strong>
+          desde el otro lado de la pantalla.
+        </strong>
+      </p>
+
+      <div class="sponsors">
+        — Tus patrocinadores
+      </div>
+    `
+  },
+
+  {
+    id:"d1",
+    short:"1",
+    name:"DISTRITO 1",
+    industry:"INDUSTRIA · LUJO",
+
+    body:`
+      <p>
+        Los ciudadanos del Distrito 1
+        han preparado una recompensa
+        para el vencedor.
+      </p>
+
+      <div class="gift-reveal">
+        RECOMPENSA DEL DISTRITO 1
+        <br><br>
+        <strong>
+          PRÓXIMAMENTE
+        </strong>
+      </div>
+
+      <p>
+        Su contenido será revelado
+        cuando llegue el momento.
+      </p>
+
+      <div class="sponsors">
+        — Distrito 1
+      </div>
+    `
+  },
+
+  {
+    id:"d2",
+    short:"2",
+    name:"DISTRITO 2",
+    industry:"INDUSTRIA · MAMPOSTERÍA",
+
+    body:`
+      <p>
+        El Distrito 2 reconoce
+        la fuerza necesaria para
+        sobrevivir a la Arena.
+      </p>
+
+      <div class="gift-reveal">
+        RECOMPENSA DEL DISTRITO 2
+        <br><br>
+        <strong>
+          PRÓXIMAMENTE
+        </strong>
+      </div>
+
+      <div class="sponsors">
+        — Distrito 2
+      </div>
+    `
+  },
+
+  {
+    id:"d8",
+    short:"8",
+    name:"DISTRITO 8",
+    industry:"INDUSTRIA · TEXTIL",
+
+    body:`
+      <p>
+        Desde las fábricas textiles
+        del Distrito 8 llega una recompensa
+        reservada para el vencedor.
+      </p>
+
+      <div class="gift-reveal">
+        RECOMPENSA DEL DISTRITO 8
+        <br><br>
+        <strong>
+          PRÓXIMAMENTE
+        </strong>
+      </div>
+
+      <div class="sponsors">
+        — Distrito 8
+      </div>
+    `
+  },
+
+  {
+    id:"d11",
+    short:"11",
+    name:"DISTRITO 11",
+    industry:"INDUSTRIA · AGRICULTURA",
+
+    body:`
+      <p>
+        El Distrito 11 comparte
+        parte de aquello que sus tierras
+        producen.
+      </p>
+
+      <div class="gift-reveal">
+        RECOMPENSA DEL DISTRITO 11
+        <br><br>
+        <strong>
+          PRÓXIMAMENTE
+        </strong>
+      </div>
+
+      <div class="sponsors">
+        — Distrito 11
+      </div>
+    `
+  },
+
+  {
+    id:"d12",
+    short:"12",
+    name:"DISTRITO 12",
+    industry:"INDUSTRIA · MINERÍA",
+
+    body:`
+      <p>
+        La última correspondencia
+        procede del Distrito 12.
+      </p>
+
+      <p>
+        Un lugar que conoce mejor que ninguno
+        lo que significa desafiar al Capitolio
+        y sobrevivir.
+      </p>
+
+      <div class="gift-reveal">
+        RECOMPENSA DEL DISTRITO 12
+        <br><br>
+        <strong>
+          PRÓXIMAMENTE
+        </strong>
+      </div>
+
+      <div class="sponsors">
+        — Distrito 12
+      </div>
+    `
+  }
+
+];
+
+
+/* ==========================================================
+   GUARDADO
+========================================================== */
+
+const STORAGE_KEY =
+  "panem_victor_rewards_progress_v1";
+
+let progress =
+  Number(localStorage.getItem(STORAGE_KEY) || 0);
+
+if(
+  Number.isNaN(progress) ||
+  progress < 0 ||
+  progress > rewards.length
+){
+  progress = 0;
+}
+
+let currentReward = null;
+
+
+/* ==========================================================
+   ELEMENTOS
+========================================================== */
+
+const envelopes =
+  document.getElementById("envelopes");
+
+const progressText =
+  document.getElementById("progressText");
+
+const progressBar =
+  document.getElementById("progressBar");
+
+const openOverlay =
+  document.getElementById("openOverlay");
+
+const bigEnvelope =
+  document.getElementById("bigEnvelope");
+
+const bigSeal =
+  document.getElementById("bigSeal");
+
+const letterEmblem =
+  document.getElementById("letterEmblem");
+
+const letterTitle =
+  document.getElementById("letterTitle");
+
+const letterIndustry =
+  document.getElementById("letterIndustry");
+
+const letterBody =
+  document.getElementById("letterBody");
+
+const acceptArea =
+  document.getElementById("acceptArea");
+
+const acceptBtn =
+  document.getElementById("acceptBtn");
+
+const unlockMessage =
+  document.getElementById("unlockMessage");
+
+const unlockTitle =
+  document.getElementById("unlockTitle");
+
+const unlockText =
+  document.getElementById("unlockText");
+
+const finalScreen =
+  document.getElementById("finalScreen");
+
+
+/* ==========================================================
+   RENDER
+========================================================== */
+
+function render(){
+
+  envelopes.innerHTML = "";
+
+  rewards.forEach((reward,index)=>{
+
+    const received =
+      index < progress;
+
+    const available =
+      index === progress;
+
+    const locked =
+      index > progress;
+
+    const slot =
+      document.createElement("div");
+
+    slot.className =
+      "envelope-slot";
+
+    const envelope =
+      document.createElement("div");
+
+    envelope.className =
+      "envelope";
+
+    if(received){
+      envelope.classList.add("received");
+    }
+
+    if(locked){
+      envelope.classList.add("locked");
+    }
+
+    envelope.innerHTML = `
+
+      <div class="flap"></div>
+
+      <div class="seal">
+        ${reward.short}
+      </div>
+
+      ${
+        locked
+        ? `<div class="lock-icon">⌁</div>`
+        : ""
+      }
+
+      ${
+        available
+        ? `<div class="new-dot"></div>`
+        : ""
+      }
+
+    `;
+
+    if(!locked){
+
+      envelope.addEventListener(
+        "click",
+        ()=>{
+          openReward(index);
+        }
+      );
+
+    }
+
+    const name =
+      document.createElement("div");
+
+    name.className =
+      "env-name";
+
+    name.textContent =
+      reward.name;
+
+    const state =
+      document.createElement("div");
+
+    state.className =
+      "env-state";
+
+    if(received){
+
+      state.classList.add("done");
+      state.textContent =
+        "✓ REGALO RECIBIDO";
+
+    }
+    else if(available){
+
+      state.classList.add("available");
+      state.textContent =
+        "● NUEVA RECOMPENSA";
+
+    }
+    else{
+
+      state.textContent =
+        "RECOMPENSA BLOQUEADA";
+
+    }
+
+    slot.appendChild(envelope);
+    slot.appendChild(name);
+    slot.appendChild(state);
+
+    envelopes.appendChild(slot);
+
+  });
+
+  progressText.textContent =
+    `${progress} / ${rewards.length}`;
+
+  progressBar.style.width =
+    `${(progress / rewards.length) * 100}%`;
+
+}
+
+
+/* ==========================================================
+   ABRIR RECOMPENSA
+========================================================== */
+
+function openReward(index){
+
+  currentReward = index;
+
+  const reward =
+    rewards[index];
+
+  bigSeal.textContent =
+    reward.short;
+
+  letterEmblem.textContent =
+    reward.short;
+
+  letterTitle.textContent =
+    reward.name;
+
+  letterIndustry.textContent =
+    reward.industry;
+
+  letterBody.innerHTML =
+    reward.body;
+
+  openOverlay.classList.add("active");
+
+  bigEnvelope.classList.remove(
+    "opening",
+    "letter-out"
+  );
+
+  acceptArea.classList.remove("show");
+
+  /*
+    Secuencia:
+
+    1. aparece sobre
+    2. rompe sello
+    3. abre solapa
+    4. sale carta
+    5. aparece aceptar
+  */
+
+  setTimeout(()=>{
+
+    bigEnvelope.classList.add(
+      "opening"
+    );
+
+  },700);
+
+
+  setTimeout(()=>{
+
+    bigEnvelope.classList.add(
+      "letter-out"
+    );
+
+  },1350);
+
+
+  setTimeout(()=>{
+
+    /*
+      Solo aparece ACEPTAR
+      si esta es la recompensa
+      actualmente disponible.
+
+      Las anteriores pueden
+      releerse sin modificar progreso.
+    */
+
+    if(index === progress){
+
+      acceptArea.classList.add(
+        "show"
+      );
+
+    }
+
+  },2200);
+
+}
+
+
+/* ==========================================================
+   CERRAR CARTA
+========================================================== */
+
+function closeLetter(){
+
+  openOverlay.classList.remove(
+    "active"
+  );
+
+  acceptArea.classList.remove(
+    "show"
+  );
+
+  setTimeout(()=>{
+
+    bigEnvelope.classList.remove(
+      "opening",
+      "letter-out"
+    );
+
+  },450);
+
+}
+
+document
+  .getElementById("closeLetter")
+  .addEventListener(
+    "click",
+    closeLetter
+  );
+
+
+/* ==========================================================
+   ACEPTAR REGALO
+========================================================== */
+
+acceptBtn.addEventListener(
+  "click",
+  acceptCurrentReward
+);
+
+
+function acceptCurrentReward(){
+
+  if(currentReward !== progress){
+    return;
+  }
+
+  progress++;
+
+  localStorage.setItem(
+    STORAGE_KEY,
+    progress
+  );
+
+  closeLetter();
+
+  setTimeout(()=>{
+
+    render();
+
+    if(progress >= rewards.length){
+
+      setTimeout(
+        showFinal,
+        650
+      );
+
+      return;
+
+    }
+
+    const next =
+      rewards[progress];
+
+    unlockTitle.textContent =
+      `${next.name} desbloqueado`;
+
+    unlockText.textContent =
+      "Una nueva recompensa ha llegado para el vencedor.";
+
+    unlockMessage.classList.add(
+      "show"
+    );
+
+    setTimeout(()=>{
+
+      unlockMessage.classList.remove(
+        "show"
+      );
+
+    },2500);
+
+  },550);
+
+}
+
+
+/* ==========================================================
+   FINAL
+========================================================== */
+
+function showFinal(){
+
+  finalScreen.classList.add(
+    "show"
+  );
+
+}
+
+finalScreen.addEventListener(
+  "click",
+  ()=>{
+
+    finalScreen.classList.remove(
+      "show"
+    );
+
+  }
+);
+
+
+/* ==========================================================
+   ADMIN OCULTO
+========================================================== */
+
+const admin =
+  document.getElementById("admin");
+
+const adminTrigger =
+  document.getElementById(
+    "adminTrigger"
+  );
+
+let pressTimer = null;
+
+
+function startAdminPress(){
+
+  pressTimer =
+    setTimeout(()=>{
+
+      admin.classList.add("show");
+
+    },1800);
+
+}
+
+
+function cancelAdminPress(){
+
+  clearTimeout(pressTimer);
+
+}
+
+
+adminTrigger.addEventListener(
+  "touchstart",
+  startAdminPress,
+  {passive:true}
+);
+
+adminTrigger.addEventListener(
+  "touchend",
+  cancelAdminPress
+);
+
+adminTrigger.addEventListener(
+  "mousedown",
+  startAdminPress
+);
+
+adminTrigger.addEventListener(
+  "mouseup",
+  cancelAdminPress
+);
+
+
+function closeAdmin(){
+
+  admin.classList.remove("show");
+
+}
+
+
+function setProgress(value){
+
+  progress = value;
+
+  localStorage.setItem(
+    STORAGE_KEY,
+    progress
+  );
+
+  render();
+
+  closeAdmin();
+
+}
+
+
+function resetEverything(){
+
+  progress = 0;
+
+  localStorage.removeItem(
+    STORAGE_KEY
+  );
+
+  finalScreen.classList.remove(
+    "show"
+  );
+
+  render();
+
+  closeAdmin();
+
+}
+
+
+/* ==========================================================
+   INICIO
+========================================================== */
+
+render();
+
+</script>
+
+</body>
+</html>
